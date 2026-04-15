@@ -75,12 +75,6 @@ export class EmailService {
             ${row('Bank:', application.applicantBankName, true)}
             ${row('Status:', application.status, false)}
           </table>
-          <p style="margin-top: 16px;">
-            <a href="${this.config.get('APP_URL', 'http://localhost:3000')}/admin"
-               style="background: #1a2744; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px;">
-              View in Dashboard
-            </a>
-          </p>
         </div>
       `,
     });
