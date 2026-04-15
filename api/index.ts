@@ -1,5 +1,7 @@
 import 'dotenv/config';
 import 'reflect-metadata';
+import 'pg';
+import 'pg-hstore';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import express, { Request, Response } from 'express';

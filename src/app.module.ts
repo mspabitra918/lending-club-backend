@@ -8,11 +8,26 @@ import { EmailModule } from './email/email.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 
-@Module({
-  imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
-    SequelizeModule.forRoot({
-      dialect: 'postgres',
+const databaseUrl =
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.POSTGRES_URL_NON_POOLING;
+
+const sequelizeOptions = databaseUrl
+  ? {
+      dialect: 'postgres' as const,
+      uri: databaseUrl,
+      autoLoadModels: true,
+      synchronize: process.env.DB_SYNCHRONIZE === 'true',
+      dialectOptions: {
+        ssl: { require: true, rejectUnauthorized: false },
+      },
+      pool: { max: 2, min: 0, idle: 10000 },
+      retry: { max: 0 },
+      logging: false,
+    }
+  : {
+      dialect: 'postgres' as const,
       host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT || '5432'),
       username: process.env.DB_USERNAME,
@@ -20,14 +35,15 @@ import { AuthModule } from './auth/auth.module';
       database: process.env.DB_NAME,
       autoLoadModels: true,
       synchronize: process.env.DB_SYNCHRONIZE === 'true',
-      dialectOptions:
-        process.env.DB_SSL === 'true'
-          ? { ssl: { require: true, rejectUnauthorized: false } }
-          : {},
       pool: { max: 2, min: 0, idle: 10000 },
       retry: { max: 0 },
       logging: false,
-    }),
+    };
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    SequelizeModule.forRoot(sequelizeOptions),
     LoanApplicationModule,
     EmailModule,
     AuthModule,

@@ -4,7 +4,18 @@
     {
       "src": "api/index.ts",
       "use": "@vercel/node",
-      "config": { "includeFiles": ["src/**", "dist/**"] }
+      "config": {
+        "includeFiles": [
+          "src/**",
+          "dist/**",
+          "node_modules/pg/**",
+          "node_modules/pg-hstore/**",
+          "node_modules/pg-connection-string/**",
+          "node_modules/pg-pool/**",
+          "node_modules/pg-types/**",
+          "node_modules/pgpass/**"
+        ]
+      }
     }
   ],
   "routes": [{ "src": "/(.*)", "dest": "api/index.ts" }]
