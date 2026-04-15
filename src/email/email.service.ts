@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Mailgun from 'mailgun.js';
 import FormData = require('form-data');
-import { LoanApplication } from 'src/loan_application/entities/loan-application.entity';
+import { LoanApplication } from '../loan_application/entities/loan-application.entity';
 
 export interface EmailPayload {
   to: string;

@@ -3,8 +3,8 @@ import { Op, cast, col, where as whereFn } from 'sequelize';
 import { LoanApplication } from './entities/loan-application.entity';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateLoanApplicationDto } from './dto/create-loan.dto';
-import { decrypt, encrypt } from 'src/common/encryption.util';
-import { EmailService } from 'src/email/email.service';
+import { decrypt, encrypt } from '../common/encryption.util';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class LoanApplicationService {
