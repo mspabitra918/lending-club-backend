@@ -11,8 +11,8 @@ module.exports = {
      */
     await queryInterface.createTable('loan_applications', {
       id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.literal('gen_random_uuid()'),
         primaryKey: true,
         allowNull: false,
       },
@@ -23,7 +23,6 @@ module.exports = {
       applicantSSN: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       applicantPhoneNumber: {
         type: Sequelize.STRING,

@@ -1,19 +1,10 @@
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  ForeignKey,
-  Model,
-  Table,
-} from 'sequelize-typescript';
-import { User } from '../../user/entities/user.entity';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 export const LoanStatus = [
   'NEW_LEAD',
-  'UNDER_REVIEW',
-  'STIPS_NEEDED',
-  'OFFER_SENT',
-  'DECLINED',
+  'IN_REVIEW',
+  'APPROVED',
+  'REJECTED',
   'FUNDED',
 ] as const;
 

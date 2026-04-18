@@ -37,9 +37,15 @@ export class LoanApplicationController {
   async getAllApplications(
     @Query('date') date?: string,
     @Query('q') q?: string,
+    @Query('tzOffset') tzOffset?: string,
   ) {
     try {
-      const loans = await this.loanService.getAll({ date, q });
+      const parsedTz = tzOffset !== undefined ? Number(tzOffset) : undefined;
+      const loans = await this.loanService.getAll({
+        date,
+        q,
+        tzOffset: Number.isFinite(parsedTz) ? parsedTz : undefined,
+      });
       return { loans };
     } catch (error) {
       throw new InternalServerErrorException(
