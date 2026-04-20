@@ -10,10 +10,10 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:3000',
-      'lendingfinance.site',
-      'https://lendingfinance.site',
-      'https://www.lendingfinance.site',
-      'www.lendingfinance.site',
+      'lendingfinance.site/',
+      'https://lendingfinance.site/',
+      'https://www.lendingfinance.site/',
+      'www.lendingfinance.site/',
     ], // your frontend URL
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
